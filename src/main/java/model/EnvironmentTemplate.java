@@ -2,13 +2,12 @@ package model;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
-import configuration.YamlReader;
+import YamlReader;
 
-import java.io.IOException;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class EnvironmentTemplate extends Environment {
+public class EnvironmentTemplate {
     boolean active;
     private String envName;
     private String appUrl;
@@ -18,37 +17,24 @@ public class EnvironmentTemplate extends Environment {
     private String mail;
     private String age;
     private String continent;
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+
+    private Map<String, Object> envProperties = new LinkedHashMap<>();
+
+    public EnvironmentTemplate(boolean active, String envName, String appUrl, String eTitle, String firstName, String secondName, String mail, String age, String continent, Map<String, Object> additionalProperties) {
+
+        this.envName = envName;
+        this.appUrl = appUrl;
+        this.eTitle = eTitle;
+        this.firstName = firstName;
+        this.secondName = secondName;
+        this.mail = mail;
+        this.age = age;
+        this.continent = continent;
+        this.envProperties = additionalProperties;
+    }
 
 
     YamlReader yamlReader = new YamlReader();
-
-    public EnvironmentTemplate() throws IOException {
-        if (yamlReader.getEnvironmentProperties().getTest1().isActive()==true) {
-            this.envName = yamlReader.getEnvironmentProperties().getTest1().getEnvName().isEmpty() ? this.envName : yamlReader.getEnvironmentProperties().getTest1().getEnvName();
-            this.appUrl = yamlReader.getEnvironmentProperties().getTest1().getAppUrl().isEmpty() ? this.appUrl : yamlReader.getEnvironmentProperties().getTest1().getAppUrl();
-            this.eTitle = yamlReader.getEnvironmentProperties().getTest1().geteTitle().isEmpty() ? this.eTitle : yamlReader.getEnvironmentProperties().getTest1().geteTitle();
-            this.firstName = yamlReader.getEnvironmentProperties().getTest1().getFirstName().isEmpty() ? this.firstName : yamlReader.getEnvironmentProperties().getTest1().getFirstName();
-            this.secondName = yamlReader.getEnvironmentProperties().getTest1().getSecondName().isEmpty() ? this.firstName : yamlReader.getEnvironmentProperties().getTest1().getSecondName();
-            this.mail = yamlReader.getEnvironmentProperties().getTest1().getMail().isEmpty() ? this.mail : yamlReader.getEnvironmentProperties().getTest1().getMail();
-            this.age = yamlReader.getEnvironmentProperties().getTest1().getAge().isEmpty() ? this.age : yamlReader.getEnvironmentProperties().getTest1().getAge();
-            this.continent = yamlReader.getEnvironmentProperties().getTest1().getContinent().isEmpty() ? this.continent : yamlReader.getEnvironmentProperties().getTest1().getContinent();
-            this.active = yamlReader.getEnvironmentProperties().getTest1().getActiveInString().isEmpty() ? this.active : yamlReader.getEnvironmentProperties().getTest1().getActive();
-        }
-        if (yamlReader.getEnvironmentProperties().getTest2().isActive() == true) {
-
-            this.envName = yamlReader.getEnvironmentProperties().getTest2().getEnvName().isEmpty() ? this.envName : yamlReader.getEnvironmentProperties().getTest2().getEnvName();
-            this.appUrl = yamlReader.getEnvironmentProperties().getTest2().getAppUrl().isEmpty() ? this.appUrl : yamlReader.getEnvironmentProperties().getTest2().getAppUrl();
-            this.eTitle = yamlReader.getEnvironmentProperties().getTest2().geteTitle().isEmpty() ? this.eTitle : yamlReader.getEnvironmentProperties().getTest2().geteTitle();
-            this.firstName = yamlReader.getEnvironmentProperties().getTest2().getFirstName().isEmpty() ? this.firstName : yamlReader.getEnvironmentProperties().getTest2().getFirstName();
-            this.secondName = yamlReader.getEnvironmentProperties().getTest2().getSecondName().isEmpty() ? this.firstName : yamlReader.getEnvironmentProperties().getTest2().getSecondName();
-            this.mail = yamlReader.getEnvironmentProperties().getTest2().getMail().isEmpty() ? this.mail : yamlReader.getEnvironmentProperties().getTest2().getMail();
-            this.age = yamlReader.getEnvironmentProperties().getTest2().getAge().isEmpty() ? this.age : yamlReader.getEnvironmentProperties().getTest2().getAge();
-            this.continent = yamlReader.getEnvironmentProperties().getTest2().getContinent().isEmpty() ? this.continent : yamlReader.getEnvironmentProperties().getTest2().getContinent();
-            this.active = yamlReader.getEnvironmentProperties().getTest2().getActiveInString().isEmpty() ? this.active : yamlReader.getEnvironmentProperties().getTest2().getActive();
-
-        }
-    }
 
 
     public boolean isActive() {
@@ -92,9 +78,6 @@ public class EnvironmentTemplate extends Environment {
         return mail;
     }
 
-    public boolean getActive() {
-        return active;
-    }
 
     public void setEnvName(String envName) {
         this.envName = envName;
@@ -129,12 +112,12 @@ public class EnvironmentTemplate extends Environment {
     }
 
     @JsonAnyGetter
-    public Map<String, Object> getAdditionalProperties() {
-        return this.additionalProperties;
+    public Map<String, Object> getProperties() {
+        return envProperties;
     }
 
     @JsonAnySetter
-    public void setAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
+    void setProperties(String key, Object value) {
+        envProperties.put(key, value);
     }
 }

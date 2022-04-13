@@ -1,4 +1,3 @@
-import configuration.YamlReader;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,21 +12,21 @@ public class FormTest extends TestBase {
     @Test
     public void fillForm() throws IOException {
         FormPage formPage = new FormPage(driver);
-        formPage.fillName(yamlReader.getEnvironmentProperties().getActiveTest().getFirstName());
+        formPage.fillName(yamlReader.getApplicationProperties().getActiveTest().getFirstName());
         log.info("***** Name is correctly set *****");
-        formPage.fillSecondName(yamlReader.getEnvironmentProperties().getActiveTest().getSecondName());
+        formPage.fillSecondName(yamlReader.getApplicationProperties().getActiveTest().getSecondName());
         log.info("***** Second name is correctly set *****");
-        formPage.fillMail(yamlReader.getEnvironmentProperties().getActiveTest().getMail());
+        formPage.fillMail(yamlReader.getApplicationProperties().getActiveTest().getMail());
         log.info("***** Mail is correctly set *****");
         formPage.selectGenderOption();
         log.info("***** Gender option is correctly selected *****");
-        formPage.fillAge(Integer.parseInt(yamlReader.getEnvironmentProperties().getActiveTest().getAge()));
+        formPage.fillAge(Integer.parseInt(yamlReader.getApplicationProperties().getActiveTest().getAge()));
         log.info("***** Age is correctly set *****");
         formPage.fillYearOfExperience();
         log.info("***** Year of experience is correctly selected *****");
         formPage.fillAutomationTesterProfession();
         log.info("***** Profession is correctly selected *****");
-        formPage.selectContinent(yamlReader.getEnvironmentProperties().getActiveTest().getContinent());
+        formPage.selectContinent(yamlReader.getApplicationProperties().getActiveTest().getContinent());
         log.info("***** Continent is correctly selected *****");
         formPage.selectSeleniumCommand();
         log.info("***** Selenium commands are correctly selected *****");

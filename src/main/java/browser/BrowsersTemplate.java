@@ -1,5 +1,5 @@
 package browser;
-import configuration.YamlReader;
+import YamlReader;
 import org.apache.commons.lang3.StringUtils;
 import java.io.IOException;
 

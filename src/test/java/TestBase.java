@@ -1,6 +1,5 @@
 import browser.Browsers;
 import browser.BrowsersTemplate;
-import configuration.YamlReader;
 import model.Environment;
 import model.EnvironmentTemplate;
 import org.junit.jupiter.api.AfterAll;
