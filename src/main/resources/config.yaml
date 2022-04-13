@@ -1,0 +1,28 @@
+browser:
+  browser1:
+    browserName: chrome
+    headlessBrowser: false
+    webElementTimeOut: 5
+
+environment:
+  test1:
+    active: true
+    envName: test1
+    appUrl: https://seleniumui.moderntester.pl/form.php
+    eTitle: Selenium
+    firstName: Katarzyna
+    secondName: Walczak
+    mail: kasia@gmail.com
+    age: 67
+    continent: europe
+
+  test2:
+    active: false
+    envName: test2
+    appUrl: https://seleniumui.moderntester.pl/form.php
+    eTitle: Selenium
+    firstName: Wojciech
+    secondName: Kaczmarek
+    mail: wk@gmail.com
+    age: 37
+    continent: europe
