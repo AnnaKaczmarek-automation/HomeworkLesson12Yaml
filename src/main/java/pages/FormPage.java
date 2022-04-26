@@ -1,4 +1,5 @@
 package pages;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -11,11 +12,11 @@ import java.io.File;
 import java.util.List;
 import java.util.Random;
 
-public class FormPage {
-    public FormPage(WebDriver driver) {
-        PageFactory.initElements(driver, this);
-    }
+public class FormPage extends BasePage {
 
+    public FormPage(WebDriver driver) {
+        super(driver);
+    }
 
     @FindBy(css = "input#inputFirstName3")
     private WebElement nameInput;
@@ -53,6 +54,7 @@ public class FormPage {
     @FindBy(id = "validator-message")
     private WebElement validatorMessage;
 
+
     public void fillName(String name) {
         nameInput.sendKeys(name);
     }
@@ -89,28 +91,28 @@ public class FormPage {
         profession.click();
     }
 
-    public void selectContinent(String continent){
+    public void selectContinent(String continent) {
         new Select(continents).selectByValue(continent);
     }
 
-    public void selectSeleniumCommand(){
+    public void selectSeleniumCommand() {
         new Select(seleniumCommands).selectByValue("switch-commands");
         new Select(seleniumCommands).selectByValue("wait-commands");
     }
 
-    public  void selectFile(){
+    public void selectFile() {
         File file = new File("src/main/resources/TestingFile");
         fileInput.sendKeys(file.getAbsolutePath());
     }
 
-    public void selectSignInButton(){
+    public void selectSignInButton() {
         signInButton.click();
     }
 
-    public void varifyValidationMessage(){
+    public void varifyValidationMessage() {
         String actualMessage = validatorMessage.getText();
         String expectedMessage = "Form not send, please fill all missing form fields";
-        Assert.assertEquals(expectedMessage,actualMessage);
+        Assert.assertEquals(expectedMessage, actualMessage);
     }
 
 }

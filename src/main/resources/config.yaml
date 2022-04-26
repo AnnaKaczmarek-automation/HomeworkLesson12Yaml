@@ -1,8 +1,7 @@
 browser:
-  browser1:
-    browserName: chrome
-    headlessBrowser: false
-    webElementTimeOut: 5
+  browserName: chrome
+  headlessBrowser: false
+  webElementTimeOut: 15
 
 environment:
   test1:

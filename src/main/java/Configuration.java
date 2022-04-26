@@ -1,19 +1,20 @@
-import browser.Browsers;
+import browser.Browser;
 import model.Environment;
 
 public class Configuration {
+    private Environment environment;
+    private Browser browser;
 
-    public Environment environment;
-
-    public Configuration(Environment environment, Browsers browsers) {
+    public Configuration(Environment environment, Browser browsers) {
         this.environment = environment;
-        this.browsers = browsers;
+        this.browser = browsers;
     }
 
-    public Browsers browsers;
+    public Configuration(){
+    }
 
-    public Browsers getBrowsers() {
-        return browsers;
+    public Browser getBrowser() {
+        return browser;
     }
 
     public Environment getEnvironment() {
